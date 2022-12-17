@@ -9,15 +9,35 @@ import pyalex
 from pyalex import Works, Authors, Venues, Institutions, Concepts
 import json
 
-#Need to pull cited_by_count and works_count from authorships
-#Can pull data with Authors().search_filter(display_name="einstein").get()
-# def Pull_Cited_By_Count:
-    
 #Need the count from referenced_works
 # def Count_Referenced_Works:
+# 
+# Input: List of string IDs
+# Output num length of List 
+def Count_Referenced_Works(referenced_Works):
+    return len(referenced_Works)
+
 
 #Need counts by year cumulative for five years after publication
 # def Five_Cumulative_Years
+#input -> countsByYear (list of dictionaries, key of year and countsByYear ordered by renency
+#output <- list of countsByYear nums, ordered from pubYear to five years out
+def Five_Cumulative_Years(countsByYear, pubYear):
+    cumulativeYears = []
+    CURRENT_YEAR = 2022
+    totalCounts = 0
+    if len(countsByYear) < CURRENT_YEAR - pubYear:
+        yearTracker = pubYear
+        for set in countsByYear[len(countsByYear):0:-1]:
+            if set.get('year') == yearTracker:
+                totalCounts += set.get('cited_by_count')
+            cumulativeYears.append(totalCounts)
+            yearTracker = yearTracker+1
+    else:
+        for set in countsByYear[len(countsByYear):0:-1]:
+            totalCounts += set.get('cited_by_count')
+            cumulativeYears.append(totalCounts)
+    return cumulativeYears[0:5]
 
 pyalex.config.email = "xavier.tarr@gmail.com"
 
@@ -34,14 +54,72 @@ paper_formatted = []
 for page in pager_2017:
     for paper in page:
         if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
             paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
-                      paper['type'],paper['open_access'],paper['authorships'],paper['concepts'],paper['referenced_works'],
-                      paper['counts_by_year'],paper['abstract']]
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
             papers.append(paper_formatted)
         if len(papers) > 25:
             break
     if len(papers) > 25:
         break
 
-# with open('data3.json', 'w') as f:
-#     json.dump(papers, f)
+for page in pager_2016:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 25:
+            break
+    if len(papers) > 25:
+        break
+
+for page in pager_2015:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 25:
+            break
+    if len(papers) > 25:
+        break
+    
+for page in pager_2014:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 25:
+            break
+    if len(papers) > 25:
+        break
+    
+for page in pager_2013:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 25:
+            break
+    if len(papers) > 25:
+        break
+
+with open('AI_data.json', 'w') as f:
+    json.dump(papers, f)
