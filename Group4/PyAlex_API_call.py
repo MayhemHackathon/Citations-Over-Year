@@ -10,6 +10,7 @@ from pyalex import Works, Authors, Venues, Institutions, Concepts
 import json
 
 #Need to pull cited_by_count and works_count from authorships
+#Can pull data with Authors().search_filter(display_name="einstein").get()
 # def Pull_Cited_By_Count:
     
 #Need the count from referenced_works
