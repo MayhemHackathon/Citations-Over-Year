@@ -9,6 +9,15 @@ import pyalex
 from pyalex import Works, Authors, Venues, Institutions, Concepts
 import json
 
+#Need to pull cited_by_count and works_count from authorships
+# def Pull_Cited_By_Count:
+    
+#Need the count from referenced_works
+# def Count_Referenced_Works:
+
+#Need counts by year cumulative for five years after publication
+# def Five_Cumulative_Years
+
 pyalex.config.email = "xavier.tarr@gmail.com"
 
 #pager = Works().search_filter(publication_year=2017,is_retracted=0 ).paginate(per_page=26)
@@ -20,11 +29,6 @@ pager_2013 = Works().filter(publication_year=2013, is_retracted=False, is_parate
 
 papers = []
 paper_formatted = []
-
-#Need to pull H_index from authorships
-#Need the count from referenced_works
-#Need counts by year cumulative for five years after publication
-
 
 for page in pager_2017:
     for paper in page:
