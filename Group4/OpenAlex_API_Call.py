@@ -23,5 +23,11 @@ params = {
 # Send the API request
 response = requests.get(API_ENDPOINT, params=params, headers={"Authorization": f"Bearer {API_KEY}"})
 
-# Print the response
-print(response.text)
+# Check the status code of the response
+if response.status_code == 200:
+    # Print the response if the request is successful
+    print(response.text)
+else:
+    # Print an error message if the request is not successful
+    print("An error occurred:", response.status_code)
+    print(response.text)
