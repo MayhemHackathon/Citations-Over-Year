@@ -33,10 +33,11 @@ paper_formatted = []
 
 for page in pager_2017:
     for paper in page:
-        paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
                       paper['type'],paper['open_access'],paper['authorships'],paper['concepts'],paper['referenced_works'],
                       paper['counts_by_year'],paper['abstract']]
-        papers.append(paper_formatted)
+            papers.append(paper_formatted)
         if len(papers) > 25:
             break
     if len(papers) > 25:
