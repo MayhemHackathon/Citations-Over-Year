@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta name="description" content="An AI for helping phd students find relevant Research Papers">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title><%= paper.title %></title>
+
+		<link rel="stylesheet" href="/css/reset.css" type="text/css">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<link rel="stylesheet" href="/assets/fontawesome/css/all.css" type="text/css">
+	</head>
+	<body>
+		<header>
+			<nav class="content-boundary">
+				<ul id="mobile-panel" class="mobile-menu">
+					<li>
+						<button id="mobile-button" aria-label="Open navigation menu">
+							<i class="fa-solid fa-bars"></i>
+						</button>
+					</li>
+				</ul>
+				<ul id="desktop-panel" class="desktop-menu menu-move">					
+					<li class="close-menu">
+						<button id="close-button" aria-label="Closes navigation menu">
+							<i class="fa-solid fa-xmark"></i>
+						</button>
+					</li> 
+
+					<!--UPDATE THIS!!!-->
+					<li><a href="http://localhost:8000">Home</a></li>
+					<li><a href="https://github.com/MayhemHackathon/Citations-Over-Year">GitHub</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section class="paper-panel">
+			<h1 class="paper-title">
+					<%= paper.title %>
+			</h1>
+			<table>
+				<caption>Basic Information</caption>
+				<tr>
+					<th>Properties</th>
+					<th>Value</th>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td>
+						<%= paper.id %>
+					</td>
+				</tr>
+				<tr>
+					<td>Paper Type</td>
+					<td>
+						<%= paper.type %>
+					</td>
+				</tr>
+				<tr>
+					<td>Publication Year</td>
+					<td>
+						<%= paper.publication_year %>
+					</td>
+				</tr>
+				<tr>
+					<td>Author(s)</td>
+					<td>
+						<ul>
+							<% for(let j=0; j < paper.authorships.length; j++) {%>
+								<li>
+									<%= paper.authorships[j].author.display_name %>	
+								</li>
+							<% } %>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>DOI</td>
+					<td>
+						<a href="<%= paper.doi %>">
+							<%= paper.doi %>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Relevance Score</td>
+					<td>
+						<%= paper.relevance_score %>
+					</td>
+				</tr>
+				<tr>
+					<td>Host Venue Publication</td>
+					<td>
+						<%= paper.host_venue_pub %>
+					</td>
+				</tr>
+				<tr>
+					<td>Open Access?</td>
+					<td>
+						<%= paper.open_access %>
+					</td>
+				</tr>
+				<tr>
+					<td>Biblio First</td>
+					<td>
+						<%= paper.biblio_first %>
+					</td>
+				</tr>
+				<tr>
+					<td>Biblio Last</td>
+					<td>
+						<%= paper.biblio_last %>
+					</td>
+				</tr>
+				<tr>
+					<td>Retracted?</td>
+					<td>
+						<%= paper.is_retracted %>
+					</td>
+				</tr>
+				<tr>
+					<td>Paratext?</td>
+					<td>
+						<%= paper.is_paratext %>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<caption>Concepts</caption>
+				<tr>
+					<th>Name</th>
+					<th>Level</th>
+					<th>Score</th>
+				</tr>
+				<% for(let j=0; j < paper.concepts.length; j++) {%>
+					<tr>
+						<td>
+							<%= paper.concepts[j].display_name %>
+						</td>
+						<td>
+							<%= paper.concepts[j].level %>
+						</td>
+						<td>
+							<%= paper.concepts[j].score %>
+						</td>
+					
+					</tr>
+				<% } %>
+			</table>
+			<h2 class="headline">Referenced Works: <span><%= paper.referenced_works.length %></span> found</h2>
+			<% if(paper.referenced_works.length > 0) { %>
+				<ul class="works-list">
+					<% for(let j=0; j < paper.referenced_works.length; j++) {%>
+						<li>
+							<a href="http://localhost:8000/paper/<%= paper.referenced_works[j] %>">
+								<%= paper.referenced_works[j] %>
+							</a>	
+						</li>
+					<% } %>
+				</ul>
+			<% } else { %>
+				<p class="no-data">No referenced works found</p>
+			<% } %>
+			<!-- <table>
+				<caption>Counted Statistics</caption>
+				<tr>
+					<th>Year</th>
+					<th>Cited Quantity</th>
+				</tr>
+				<% for(let j=0; j < paper.counts_by_year.length; j++) {%>
+					<tr>
+						<td>
+							<%= paper.counts_by_year[j].year %>
+						</td>	
+						<td>
+							<%= paper.counts_by_year[j].cited_by_count %>
+						</td>
+					</tr>	
+				<% } %>
+			</table> -->
+			<section class="content-split">
+				<h2 class="headline">Counted Statistics</h2>
+				<img class="graph" src="<%= paper.graphy %>" alt="Bra graph depicting Counted Statistics over years" />
+			</section>
+			<h2 class="headline">Abstract</h2>
+			<article>
+				<% if(paper.abstract) { %>
+					<blockquote>
+						<%= paper.abstract %>
+					</blockquote>
+				<% } else { %>
+					<p class="no-data"> No abstract found</p>
+				<% } %>
+			</article>
+		</section>
+		<footer>
+			<p>© 2022 Tiger Tales Hackathon</p>
+		</footer>
+		<script type="text/javascript" src="/js/main.js"></script>
+	</body>
+</html>
