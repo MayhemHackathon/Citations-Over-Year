@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta name="description" content="An AI for helping phd students find relevant Research Papers">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Tiger Tales Research Paper Finder AI</title>
+
+		<link rel="stylesheet" href="/css/reset.css" type="text/css">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<link rel="stylesheet" href="/assets/fontawesome/css/all.css" type="text/css">
+	</head>
+	<body>
+		<header>
+			<nav class="content-boundary">
+				<ul id="mobile-panel" class="mobile-menu">
+					<li>
+						<button id="mobile-button" aria-label="Open navigation menu">
+							<i class="fa-solid fa-bars"></i>
+						</button>
+					</li>
+				</ul>
+				<ul id="desktop-panel" class="desktop-menu menu-move">					
+					<li class="close-menu">
+						<button id="close-button" aria-label="Closes navigation menu">
+							<i class="fa-solid fa-xmark"></i>
+						</button>
+					</li> 
+
+					<!--UPDATE THIS!!!-->
+					<li><a href="http://localhost:8000">Home</a></li>
+					<li><a href="https://github.com/MayhemHackathon/Citations-Over-Year">GitHub</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section class="opening">
+            <div class="content-boundary">
+                <h1>Welcome to the Research Paper Finder AI</h1>
+                <section class="search-panel">
+                    <form method="POST" action="/search">
+                        <input type="text" placeholder="Search..." class="search-field" name="search" aria-label="Search for research papers" required>
+                        <div class="filter-panel">
+                            <h3 class="filter-header">Filters</h3>
+                            <div class="filters">
+                                <input type="checkbox" id="retracted" name="retracted">
+                                <label for="retracted">Retracted</label>
+                            </div>
+                            <div class="filters">
+                                <input type="checkbox" id="paratext" name="paratext">
+                                <label for="paratext">Paratext</label>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+		</section>
+		<footer>
+			<p>© 2022 Tiger Tales Hackathon</p>
+		</footer>
+
+		<script type="text/javascript" src="/js/main.js"></script>
+	</body>
+</html>

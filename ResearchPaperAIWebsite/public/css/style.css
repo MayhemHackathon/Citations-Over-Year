@@ -1,0 +1,419 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+body {
+  font-size: 62.5%;
+  background: #2a2f38;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+header, footer {
+  font-size: 1.4rem;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+.search-panel {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
+.filter-panel {
+  padding: 1rem;
+  border: 2px solid #f0f0f0;
+  margin: 25px auto;
+  color: #f0f0f0;
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.filter-header {
+  flex-basis: 100%;
+}
+
+label {
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.opening {
+  padding: 25px;
+  /* Source: Norbert Kowalczyk https://unsplash.com/@norbertkowalczyk */
+  background: url('../assets/bkg-splash.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.horizontal-boundary {
+  padding: 0 25px;
+}
+
+.paper-panel {
+  max-width: 1000px;
+  width: 100%;
+  margin: 25px auto;
+  padding: 25px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  overflow-wrap: break-word;
+}
+
+table {
+  margin: 40px 0;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.graph {
+  width: 100%;
+}
+
+caption {
+  margin: 10px auto;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+th {
+  border: 1px solid black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: .5rem;
+}
+
+td {
+  padding: .5rem;
+  font-size: 1.1rem;
+  border: 1px solid black;
+}
+
+.headline {
+  color: black;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  font-size: 1.4rem;
+  line-height: 125%;
+}
+
+h1 {
+  line-height: 120%;
+  color: #f0f0f0;
+  font-size: 2.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 50px auto;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.75rem;
+  color:#f0f0f0;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+footer  {
+  justify-content: center;
+}
+
+footer p {
+  text-align: center;
+}
+
+nav a,
+nav button {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.content-boundary {
+  max-width: 1500px;
+  width: 100%;
+}
+
+.search-field {
+  border-radius: 20px;
+  padding: .75rem;
+  width: 100%;
+  font-size: 1.3rem;
+  background: #1e1e1e;
+  border: 2px solid #f0f0f0;
+  color: #f0f0f0;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-flow: row nowrap;
+  position: static;
+  background: #1e1e1e;
+  height: auto;
+  width: auto;
+  padding: 0;
+}
+
+.mobile-menu li {
+  padding-right: 1rem;
+}
+
+.desktop-menu {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: #1e1e1e;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  -webkit-transition: left .2s linear;
+  -ms-transition: left .2s linear;
+  transition: left .2s linear;
+}
+
+.desktop-menu li {
+  padding: 1rem 0;
+  margin-top: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.close-menu {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-move {
+  left: 100vw;
+}
+
+.results-panel {
+  padding: 25px 10px;
+  margin: 40px auto;
+  background-color: #f0f0f0;
+}
+
+.author-list span:not(:last-child):after {
+  content: ",";
+}
+
+.paper {
+  padding: 12.5px;
+  overflow-wrap: break-word;
+}
+
+.paper * {
+  color: black;
+  font-size: .8rem;
+}
+
+.paper > * {
+  margin-bottom: 10px;
+}
+
+.paper-title,
+.paper-title a {
+  color: #ff453f;
+  font-size: 1.4rem;
+  line-height: 110%;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+h1.paper-title {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.page-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+.page-nav li {
+  margin: 0 10px;
+  color:#f0f0f0;
+  font-size: 1.5rem;
+}
+
+.page-nav a {
+  color:#f0f0f0;
+  text-decoration: none;
+}
+
+.page-jump {
+  color: black;
+  border-radius: 10px;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.no-papers {
+  text-align: center;
+  font-size: 1.75rem;
+  color: #f0f0f0;
+  line-height: 110%;
+  padding: 1rem;
+  border: 5px dotted #f0f0f0;
+}
+
+.no-data {
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+.works-list {
+  font-size: 1.1rem;
+  line-height: 150%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, 180px);
+}
+
+.works-list li {
+  margin-left: 20px;
+}
+
+.content-split {
+  margin: 30px 0;
+}
+
+@media all and (min-width: 425px) {
+  table {
+    width: 75%;
+  }
+
+  th {
+    font-size: 1.4rem;
+  }
+  
+  td {
+    font-size: 1.25rem;
+  }
+
+  .works-list {
+    font-size: 1.25rem;
+  }
+}
+
+@media all and (min-width: 610px) {
+  header, footer {
+    padding: 20px 40px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu li {
+    padding: 1rem;
+    padding-left: 0;
+  }
+
+  .desktop-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    position: static;
+    background: #1e1e1e;
+    height: auto;
+    width: auto;
+    padding: 0;
+  }
+
+  .desktop-menu li {
+    padding: 0;
+    padding-right: 1rem;
+    margin-top: 0;
+    border-bottom: 0;
+  }
+  
+  .close-menu {
+    display: none;
+  }
+
+  .search-panel {
+    width: 500px;
+  }
+
+  .results-panel {
+    padding: 25px 50px;
+  }
+
+  nav li { 
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 0;
+  }
+}
+
+@media all and (min-width: 700px) {
+  .graph {
+    width: 600px;
+  }
+}
