@@ -98,5 +98,18 @@ papers_by_year = get_data(
     2010, 2015, {"is_retracted": False, "is_paratext": False})
 # print(papers_by_year)
 
+# with open("sample.json", "w") as outfile:
+#     outfile.write(json.dumps(papers_by_year))
+    
 with open("sample.json", "w") as outfile:
-    outfile.write(json.dumps(papers_by_year))
+    new_data = []
+    for element in papers_by_year:
+        dct= {}
+        dct['ID'], dct['DOI'], dct['Title'], dct['publication_year'], dct['HostVenue'], dct['Type'], dct['OpenAccess'], dct['Concepts'], dct['ReferencedWork'], dct['CitedByYear'] , dct['Abstract'] = element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8], element[9], element[10], element[11]
+        new_data.append(dct)
+
+
+    # ['ID': "", 'DOI': "", 'Title': "", 'Year': "", 'HostVenue': "", 'Type': "", 'OpenAccess': "", 'Concepts': "", 'ReferencedWork': "", 'CitedByYear': "", 'Abstract': ""}
+
+
+    outfile.write(json.dumps(new_data))

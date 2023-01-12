@@ -51,47 +51,47 @@ pager_2013 = Works().filter(publication_year=2013, is_retracted=False, is_parate
 papers = []
 paper_formatted = []
 
-# for page in pager_2017:
-#     for paper in page:
-#         if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
-#             count_references = Count_Referenced_Works(paper['referenced_works'])
-#             count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
-#             paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
-#                       paper['type'],paper['open_access'],paper['concepts'],count_references,
-#                       count_cumulative_by_year,paper['abstract']]
-#             papers.append(paper_formatted)
-#         if len(papers) > 10000:
-#             break
-#     if len(papers) > 10000:
-#         break
+for page in pager_2017:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 10000:
+            break
+    if len(papers) > 10000:
+        break
 
-# for page in pager_2016:
-#     for paper in page:
-#         if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
-#             count_references = Count_Referenced_Works(paper['referenced_works'])
-#             count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
-#             paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
-#                       paper['type'],paper['open_access'],paper['concepts'],count_references,
-#                       count_cumulative_by_year,paper['abstract']]
-#             papers.append(paper_formatted)
-#         if len(papers) > 20000:
-#             break
-#     if len(papers) > 20000:
-#         break
+for page in pager_2016:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 20000:
+            break
+    if len(papers) > 20000:
+        break
 
-# for page in pager_2015:
-#     for paper in page:
-#         if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
-#             count_references = Count_Referenced_Works(paper['referenced_works'])
-#             count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
-#             paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
-#                       paper['type'],paper['open_access'],paper['concepts'],count_references,
-#                       count_cumulative_by_year,paper['abstract']]
-#             papers.append(paper_formatted)
-#         if len(papers) > 30000:
-#             break
-#     if len(papers) > 30000:
-#         break
+for page in pager_2015:
+    for paper in page:
+        if paper['counts_by_year'][-1]['year'] >= paper['publication_year']:
+            count_references = Count_Referenced_Works(paper['referenced_works'])
+            count_cumulative_by_year = Five_Cumulative_Years(paper['counts_by_year'], paper['publication_year'])
+            paper_formatted = [paper['id'], paper['doi'],paper['title'],paper['publication_year'],paper['host_venue'],
+                      paper['type'],paper['open_access'],paper['concepts'],count_references,
+                      count_cumulative_by_year,paper['abstract']]
+            papers.append(paper_formatted)
+        if len(papers) > 30000:
+            break
+    if len(papers) > 30000:
+        break
     
 for page in pager_2014:
     for paper in page:
@@ -102,9 +102,9 @@ for page in pager_2014:
                       paper['type'],paper['open_access'],paper['concepts'],count_references,
                       count_cumulative_by_year,paper['abstract']]
             papers.append(paper_formatted)
-        if len(papers) > 10:
+        if len(papers) > 40000:
             break
-    if len(papers) > 10:
+    if len(papers) > 40000:
         break
     
 for page in pager_2013:
@@ -121,5 +121,13 @@ for page in pager_2013:
     if len(papers) > 50000:
         break
 
-with open('AI_data_bigger.json', 'w') as f:
-    json.dump(papers, f)
+# with open('AI_data_bigger.json', 'w') as f:
+#     json.dump(papers, f)
+    
+with open("sample.json", "w") as outfile:
+    new_data = []
+    for element in papers:
+        dct= {}
+        dct['ID'], dct['DOI'], dct['Title'], dct['publication_year'], dct['HostVenue'], dct['Type'], dct['OpenAccess'], dct['Concepts'], dct['ReferencedWork'], dct['CitedByYear'] , dct['Abstract'] = element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8], element[9], element[10]
+        new_data.append(dct)
+    json.dump(new_data, outfile)
